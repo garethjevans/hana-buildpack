@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package postgres
+package hana
 
 import (
 	"fmt"
@@ -55,7 +55,7 @@ func (b Build) Build(context libcnb.BuildContext) (libcnb.BuildResult, error) {
 		return libcnb.BuildResult{}, fmt.Errorf("unable to resolve hana-buildpack plan entry\n%w", err)
 	} else if ok {
 		// resolve the dependency to copy into the layer
-		dep, err := dr.Resolve("postgres-driver", "")
+		dep, err := dr.Resolve("hana-driver", "")
 		if err != nil {
 			return libcnb.BuildResult{}, fmt.Errorf("unable to find dependency\n%w", err)
 		}

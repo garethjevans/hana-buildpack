@@ -15,11 +15,11 @@
 api = "0.7"
 
 [buildpack]
-  description = "A Cloud Native Buildpack that installs and configures a postgres driver"
+  description = "A Cloud Native Buildpack that installs and configures a hana driver"
   homepage = "https://github.com/garethjevans/hana-buildpack"
   id = "garethjevans/hana-buildpack"
-  keywords = ["java", "postgres", "paketo", "buildpacks"]
-  name = "Postgres Buildpack"
+  keywords = ["java", "hana", "paketo", "buildpacks"]
+  name = "Hana Buildpack"
   sbom-formats = ["application/vnd.cyclonedx+json", "application/vnd.syft+json"]
   version = "{{.version}}"
 
@@ -35,21 +35,20 @@ api = "0.7"
     default = "false"
     description = "enables the buildpack"
     build = true
-    name = "BP_POSTGRES_ENABLE"
+    name = "BP_HANA_ENABLE"
 
   [[metadata.dependencies]]
-    cpes = ["cpe:2.3:a:postgresql:postgresql:42.3.1:*:*:*:*:*:*:*"]
-    id = "postgres-driver"
-    name = "Postgres JDBC driver"
-    purl = "pkg:generic/postgres-driver@42.3.1"
-    sha256 = "8370570857da86eb4a76dd3d8505d34bac0c18186741fa83a6820a10fa441cb4"
+    cpes = ["cpe:2.3:a:hana:hana:2.11.14:*:*:*:*:*:*:*"]
+    id = "hana-driver"
+    name = "SAP Hana JDBC driver"
+    purl = "pkg:generic/hana-driver@2.11.14"
+    sha256 = "4e37edf2d49380de2ae69820aad2009e340e696c21fde63915d2d4f9946f6d95"
     stacks = ["io.buildpacks.stacks.bionic"]
-    uri = "https://repo1.maven.org/maven2/org/postgresql/postgresql/42.3.1/postgresql-42.3.1.jar"
-    version = "42.3.1"
+    uri = "https://repo1.maven.org/maven2/com/sap/cloud/db/jdbc/ngdbc/2.11.14/ngdbc-2.11.14.jar"
+    version = "2.11.14"
 
     [[metadata.dependencies.licenses]]
-      type = "BSD-2-Clause"
-      uri = "https://jdbc.postgresql.org/about/license.html"
+      type = "SAP-Dev"
 
 [[stacks]]
   id = "io.buildpacks.stacks.bionic"

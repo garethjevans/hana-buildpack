@@ -17,7 +17,7 @@
 package main
 
 import (
-	"github.com/garethjevans/hana-buildpack/postgres"
+	"github.com/garethjevans/hana-buildpack/hana"
 	"os"
 
 	"github.com/paketo-buildpacks/libpak"
@@ -26,7 +26,7 @@ import (
 
 func main() {
 	libpak.Main(
-		postgres.Detect{Logger: bard.NewLogger(os.Stderr)},
-		postgres.Build{Logger: bard.NewLogger(os.Stdout)},
+		hana.Detect{Logger: bard.NewLogger(os.Stderr)},
+		hana.Build{Logger: bard.NewLogger(os.Stdout)},
 	)
 }
