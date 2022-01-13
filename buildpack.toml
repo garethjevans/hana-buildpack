@@ -1,0 +1,56 @@
+# Copyright 2018-2020 the original author or authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+api = "0.7"
+
+[buildpack]
+  description = "A Cloud Native Buildpack that installs and configures a postgres driver"
+  homepage = "https://github.com/garethjevans/hana-buildpack"
+  id = "garethjevans/hana-buildpack"
+  keywords = ["java", "postgres", "paketo", "buildpacks"]
+  name = "Postgres Buildpack"
+  sbom-formats = ["application/vnd.cyclonedx+json", "application/vnd.syft+json"]
+  version = "{{.version}}"
+
+  [[buildpack.licenses]]
+    type = "Apache-2.0"
+    uri = "https://github.com/garethjevans/hana-buildpack/blob/main/LICENSE"
+
+[metadata]
+  include-files = ["LICENSE", "NOTICE", "README.md", "bin/build", "bin/detect", "bin/helper", "bin/main", "buildpack.toml"]
+  pre-package = "scripts/build.sh"
+
+  [[metadata.configurations]]
+    default = "false"
+    description = "enables the buildpack"
+    build = true
+    name = "BP_POSTGRES_ENABLE"
+
+  [[metadata.dependencies]]
+    cpes = ["cpe:2.3:a:postgresql:postgresql:42.3.1:*:*:*:*:*:*:*"]
+    id = "postgres-driver"
+    name = "Postgres JDBC driver"
+    purl = "pkg:generic/postgres-driver@42.3.1"
+    sha256 = "8370570857da86eb4a76dd3d8505d34bac0c18186741fa83a6820a10fa441cb4"
+    stacks = ["io.buildpacks.stacks.bionic"]
+    uri = "https://repo1.maven.org/maven2/org/postgresql/postgresql/42.3.1/postgresql-42.3.1.jar"
+    version = "42.3.1"
+
+    [[metadata.dependencies.licenses]]
+      type = "BSD-2-Clause"
+      uri = "https://jdbc.postgresql.org/about/license.html"
+
+[[stacks]]
+  id = "io.buildpacks.stacks.bionic"
+
